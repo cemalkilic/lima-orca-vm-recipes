@@ -4,6 +4,12 @@ An [Orca](https://www.onorca.dev) plugin that runs each workspace in its own dis
 [Lima](https://lima-vm.io) virtual machine on your own computer. Your agents get a clean
 Linux box per workspace, with no access to your host's files and no cloud account involved.
 
+> [!WARNING]
+> **This plugin is experimental.** It is an early release, tested on macOS with Lima 2.x.
+> Recipes, VM sizes and behavior may change between versions, and you may hit rough edges.
+> Please [open an issue](https://github.com/cemalkilic/lima-orca-vm-recipes/issues) if
+> something breaks.
+
 > [!IMPORTANT]
 > **VM recipes are an experimental Orca feature.** The **Run on** picker in the new-workspace
 > screen stays hidden until you turn it on: **Settings → Experimental → Cloud VM**. The setting
