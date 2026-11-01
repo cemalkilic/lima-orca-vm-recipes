@@ -23,3 +23,35 @@ jobs:
         run: |
           docker run --rm -v "$PWD:/mnt:ro" -w /mnt koalaman/shellcheck:v0.10.0 -s sh src/*/*.sh
           docker run --rm -v "$PWD:/mnt:ro" -w /mnt koalaman/shellcheck:v0.10.0 scripts/*.sh
+
+  # Why Orca's own validator: `jq empty` only checks syntax, while the plugin directory's indexer
+  # also enforces the manifest schema (field limits such as alt text <= 160 chars). Tracks Orca's
+  # main so CI fails on the same rules the indexer applies.
+  orca-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: plugin
+      - uses: actions/checkout@v4
+        with:
+          repository: stablyai/orca
+          path: orca
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: orca/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: orca/pnpm-lock.yaml
+      - name: Install Orca dependencies
+        working-directory: orca
+        # Why --ignore-scripts plus build:packages: postinstall also rebuilds native deps the
+        # validator doesn't need; the workspace packages (e.g. @orca/process-host) it does need.
+        run: |
+          pnpm install --frozen-lockfile --ignore-scripts
+          pnpm run build:packages
+      - name: pnpm validate:plugin
+        working-directory: orca
+        run: pnpm validate:plugin "$GITHUB_WORKSPACE/plugin"
