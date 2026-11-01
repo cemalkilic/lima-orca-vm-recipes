@@ -3,7 +3,7 @@
   "id": "lima-recipes",
   "publisher": "cemalkilic",
   "name": "Lima VM Recipes",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "execution": "declarative",
   "description": "Disposable Lima VM workspaces: create, suspend, resume and destroy with limactl.",
   "license": "MIT",
@@ -26,7 +26,7 @@
   "screenshots": [
     {
       "path": "images/security.png",
-      "alt": "What crosses into the VM: committed branches and remotes with credentials removed go in; uncommitted changes and your home directory stay on your Mac; Orca connects back over SSH on localhost",
+      "alt": "What crosses into the VM: committed branches and credential-free remotes go in; uncommitted changes and your home directory stay on your Mac",
       "caption": "What crosses into the VM"
     }
   ]

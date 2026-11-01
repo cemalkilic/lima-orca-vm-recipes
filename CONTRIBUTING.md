@@ -7,7 +7,7 @@ Thanks for helping out. Issues and pull requests are welcome.
 1. Edit the scripts in `src/<recipe>/`, never `recipes/*.json` by hand.
 2. Run `scripts/build.sh` and commit the regenerated JSON with your change.
 3. Run `scripts/test-recipe.sh recipes/<recipe>.json` on macOS or Linux with Lima 2.x and say in
-   the pull request that it passed. CI checks lint and build freshness only; it doesn't boot VMs.
+   the pull request that it passed. CI checks lint, build freshness and Orca's plugin validator; it doesn't boot VMs.
 
 ## Recipe rules
 
@@ -30,6 +30,6 @@ Orca runs each lifecycle command with `/bin/sh` from the repo root, so:
 ## Releasing
 
 1. Bump `version` in `orca-plugin.json` and add a `CHANGELOG.md` entry.
-2. Commit, then tag and push: `git tag -a vX.Y.Z -m vX.Y.Z && git push origin vX.Y.Z`.
+2. Open a pull request. After it merges and CI passes, tag the merge commit on `main` and push: `git tag -a vX.Y.Z -m vX.Y.Z && git push origin vX.Y.Z`.
 
 Orca asks users to review the plugin again whenever a recipe changes.
