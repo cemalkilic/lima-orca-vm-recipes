@@ -18,5 +18,16 @@
       }
     ]
   },
-  "capabilities": []
+  "capabilities": [],
+  "cover": {
+    "path": "images/cover.png",
+    "alt": "Lima VM Recipes runs each Orca workspace in its own disposable Lima VM on your computer, with no host mounts and no cloud account"
+  },
+  "screenshots": [
+    {
+      "path": "images/security.png",
+      "alt": "What crosses into the VM: committed branches and remotes with credentials removed go in; uncommitted changes and your home directory stay on your Mac; Orca connects back over SSH on localhost",
+      "caption": "What crosses into the VM"
+    }
+  ]
 }
