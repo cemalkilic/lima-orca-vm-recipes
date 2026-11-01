@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recipe JSON is up to date
+        run: scripts/build.sh --check
+      - name: Manifest and recipes are valid JSON
+        run: jq empty orca-plugin.json recipes/*.json
+      - name: Recipe scripts are valid POSIX sh
+        run: for f in src/*/*.sh; do sh -n "$f"; done
+      - name: ShellCheck
+        run: |
+          docker run --rm -v "$PWD:/mnt:ro" -w /mnt koalaman/shellcheck:v0.10.0 -s sh src/*/*.sh
+          docker run --rm -v "$PWD:/mnt:ro" -w /mnt koalaman/shellcheck:v0.10.0 scripts/*.sh

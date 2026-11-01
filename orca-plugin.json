@@ -1,0 +1,22 @@
+{
+  "manifestVersion": 2,
+  "id": "lima-recipes",
+  "publisher": "cemalkilic",
+  "name": "Lima VM Recipes",
+  "version": "1.0.0",
+  "execution": "declarative",
+  "description": "Disposable Lima VM workspaces: create, suspend, resume and destroy with limactl.",
+  "license": "MIT",
+  "repository": "https://github.com/cemalkilic/lima-orca-vm-recipes",
+  "engines": {
+    "orca": ">=1.4.245"
+  },
+  "contributes": {
+    "vmRecipes": [
+      {
+        "path": "recipes/ubuntu-lts.json"
+      }
+    ]
+  },
+  "capabilities": []
+}
